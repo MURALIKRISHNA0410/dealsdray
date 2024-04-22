@@ -5,6 +5,7 @@ import DashBord from "./components/DashBord";
 import CreateEmployee from "./components/CreateEmployee";
 import EmployeeList from "./components/EmployeeList";
 import EditEmployee from "./components/EditEmployee";
+import Logout from "./components/Logout";
 
 
 function App() {
@@ -15,9 +16,11 @@ function App() {
         <Route element={<Login/>} path='/'></Route>
         <Route element={<Registration/>} path='/register'/>
         <Route element={<DashBord/>} path='/dashbord/:ID'/>
+        <Route element={<DashBord/>} path='/dashbord'/>
         <Route element={<CreateEmployee/>} path='create-employee'/>
         <Route element={<EmployeeList/>} path="/employee-list"/>
         <Route element={<EditEmployee/>} path="/edit-employee/:ID"/>
+        <Route element={<Logout/>} path="/Logout"/>
       </Routes>
       </BrowserRouter>
   </div>

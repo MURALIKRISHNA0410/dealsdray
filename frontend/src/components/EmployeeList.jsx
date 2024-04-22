@@ -10,6 +10,9 @@ import Button from '@mui/material/Button';
 const EmployeeList = () => {
     let [infoFromDB, setinfoFromDB] = useState([])
     let [reload, setReload] = useState(0)
+    const [search,setSearch]=useState("");
+
+    console.log(search);
     useEffect(()=>{
         axios.get("http://localhost:4001/employee-list")
         .then((e)=>{
@@ -29,6 +32,9 @@ const EmployeeList = () => {
   return (
     <div className='w-screen'>
       <p>Total Count : {infoFromDB.length}</p>
+      <form>
+        <input type='text' placeholder="Search" onChange={(e)=>setSearch(e.target.value)}/>
+      </form>
        <table>
        <thead className='border border-black w-screen'>
           <tr>
@@ -44,7 +50,9 @@ const EmployeeList = () => {
           </tr>
         </thead>
         <tbody className='text-center text-[15px]'>
-          {infoFromDB.map((item,i) => (
+          {infoFromDB.filter((item)=>{
+            return search.toLowerCase() ===""?item:item.name.toLowerCase().includes(search);
+          }).map((item,i) => (
             <tr key={item.id}>
               <td className='border-2 border-green-700'>{i+1}</td>
               <td className='border-2 border-green-700'><img src={`backend/Images/${item.image}`}/></td>
